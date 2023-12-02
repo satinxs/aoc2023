@@ -1,46 +1,94 @@
 const std = @import("std");
 const Allocator = std.mem.Allocator;
-const List = std.ArrayList;
-const Map = std.AutoHashMap;
-const StrMap = std.StringHashMap;
-const BitSet = std.DynamicBitSet;
-
-const util = @import("util.zig");
-const gpa = util.gpa;
 
 const data = @embedFile("data/day01.txt");
 
 pub fn main() !void {
-    
+    try part1();
+    try part2();
 }
 
-// Useful stdlib functions
-const tokenizeAny = std.mem.tokenizeAny;
-const tokenizeSeq = std.mem.tokenizeSequence;
-const tokenizeSca = std.mem.tokenizeScalar;
-const splitAny = std.mem.splitAny;
-const splitSeq = std.mem.splitSequence;
-const splitSca = std.mem.splitScalar;
-const indexOf = std.mem.indexOfScalar;
-const indexOfAny = std.mem.indexOfAny;
-const indexOfStr = std.mem.indexOfPosLinear;
-const lastIndexOf = std.mem.lastIndexOfScalar;
-const lastIndexOfAny = std.mem.lastIndexOfAny;
-const lastIndexOfStr = std.mem.lastIndexOfLinear;
-const trim = std.mem.trim;
-const sliceMin = std.mem.min;
-const sliceMax = std.mem.max;
+fn part1() !void {
+    var sum: u64 = 0;
+    var tokenizer = std.mem.tokenize(u8, data, "\n");
+    while (tokenizer.next()) |line| {
+        var first: ?u64 = null;
+        var last: ?u64 = null;
+        for (std.mem.trim(u8, line, " \r\n")) |c| {
+            if (std.ascii.isDigit(c)) {
+                const n = c - '0';
+                if (first == null)
+                    first = n;
+                last = n;
+            }
+        }
 
-const parseInt = std.fmt.parseInt;
-const parseFloat = std.fmt.parseFloat;
+        sum += first.? * 10 + last.?;
+    }
 
-const print = std.debug.print;
-const assert = std.debug.assert;
+    std.debug.print("Total sum: {d}\n", .{sum});
+}
 
-const sort = std.sort.block;
-const asc = std.sort.asc;
-const desc = std.sort.desc;
+fn part2() !void {
+    var sum: u64 = 0;
 
-// Generated from template/template.zig.
-// Run `zig build generate` to update.
-// Only unmodified days will be updated.
+    var tokenizer = std.mem.tokenize(u8, data, "\n");
+    while (tokenizer.next()) |line| {
+        var first: ?u64 = null;
+        var last: ?u64 = null;
+
+        var digitIterator = DigitIterator{ .source = line };
+        while (digitIterator.next()) |digit| {
+            if (first == null)
+                first = digit;
+            last = digit;
+        }
+
+        sum += first.? * 10 + last.?;
+    }
+
+    std.debug.print("Total sum: {d}\n", .{sum});
+}
+
+const DigitIterator = struct {
+    source: []const u8,
+    pos: usize = 0,
+
+    fn match(self: *@This(), comptime pairs: anytype) ?u64 {
+        const source = self.source[self.pos..];
+
+        inline for (@typeInfo(@TypeOf(pairs)).Struct.fields) |field| {
+            if (std.mem.startsWith(u8, source, field.name)) {
+                self.pos += 1;
+                return @field(pairs, field.name);
+            }
+        }
+
+        return null;
+    }
+
+    fn next(self: *@This()) ?u64 {
+        while (self.pos < self.source.len) {
+            const c = self.source[self.pos];
+
+            if (switch (c) {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' => {
+                    defer self.pos += 1;
+                    return c - '0';
+                },
+                'e' => self.match(.{ .eight = 8 }),
+                'f' => self.match(.{ .four = 4, .five = 5 }),
+                'n' => self.match(.{ .nine = 9 }),
+                'o' => self.match(.{ .one = 1 }),
+                's' => self.match(.{ .six = 6, .seven = 7 }),
+                't' => self.match(.{ .two = 2, .three = 3 }),
+                else => null,
+            }) |value|
+                return value;
+
+            self.pos += 1;
+        }
+
+        return null;
+    }
+};

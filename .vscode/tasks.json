@@ -7,7 +7,10 @@
             "label": "build day 01",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day01"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -15,7 +18,10 @@
             "label": "build day 02",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day02"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -23,7 +29,10 @@
             "label": "build day 03",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day03"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -31,7 +40,10 @@
             "label": "build day 04",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day04"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -39,7 +51,10 @@
             "label": "build day 05",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day05"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -47,7 +62,10 @@
             "label": "build day 06",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day06"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -55,7 +73,10 @@
             "label": "build day 07",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day07"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -63,7 +84,10 @@
             "label": "build day 08",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day08"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -71,7 +95,10 @@
             "label": "build day 09",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day09"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -79,7 +106,10 @@
             "label": "build day 10",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day10"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -87,7 +117,10 @@
             "label": "build day 11",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day11"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -95,7 +128,10 @@
             "label": "build day 12",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day12"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -103,7 +139,10 @@
             "label": "build day 13",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day13"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -111,7 +150,10 @@
             "label": "build day 14",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day14"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -119,7 +161,10 @@
             "label": "build day 15",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day15"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -127,7 +172,10 @@
             "label": "build day 16",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day16"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -135,7 +183,10 @@
             "label": "build day 17",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day17"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -143,7 +194,10 @@
             "label": "build day 18",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day18"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -151,7 +205,10 @@
             "label": "build day 19",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day19"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -159,7 +216,10 @@
             "label": "build day 20",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day20"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -167,7 +227,10 @@
             "label": "build day 21",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day21"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -175,7 +238,10 @@
             "label": "build day 22",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day22"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -183,7 +249,10 @@
             "label": "build day 23",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day23"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -191,7 +260,10 @@
             "label": "build day 24",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day24"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -199,7 +271,10 @@
             "label": "build day 25",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_day25"], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
+            "args": [
+                "build",
+                "-Doptimize=Debug"
+            ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
             "group": "build",
         },
@@ -207,7 +282,10 @@
             "label": "build tests",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests"],
+            "args": [
+                "build",
+                "install_tests"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -215,7 +293,10 @@
             "label": "build tests util",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_util"],
+            "args": [
+                "build",
+                "install_tests_util"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -223,7 +304,10 @@
             "label": "build tests day01",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day01"],
+            "args": [
+                "build",
+                "install_tests_day01"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -231,7 +315,10 @@
             "label": "build tests day02",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day02"],
+            "args": [
+                "build",
+                "install_tests_day02"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -239,7 +326,10 @@
             "label": "build tests day03",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day03"],
+            "args": [
+                "build",
+                "install_tests_day03"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -247,7 +337,10 @@
             "label": "build tests day04",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day04"],
+            "args": [
+                "build",
+                "install_tests_day04"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -255,7 +348,10 @@
             "label": "build tests day05",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day05"],
+            "args": [
+                "build",
+                "install_tests_day05"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -263,7 +359,10 @@
             "label": "build tests day06",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day06"],
+            "args": [
+                "build",
+                "install_tests_day06"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -271,7 +370,10 @@
             "label": "build tests day06",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day06"],
+            "args": [
+                "build",
+                "install_tests_day06"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -279,7 +381,10 @@
             "label": "build tests day07",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day07"],
+            "args": [
+                "build",
+                "install_tests_day07"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -287,7 +392,10 @@
             "label": "build tests day08",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day08"],
+            "args": [
+                "build",
+                "install_tests_day08"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -295,7 +403,10 @@
             "label": "build tests day09",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day09"],
+            "args": [
+                "build",
+                "install_tests_day09"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -303,7 +414,10 @@
             "label": "build tests day10",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day10"],
+            "args": [
+                "build",
+                "install_tests_day10"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -311,7 +425,10 @@
             "label": "build tests day11",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day11"],
+            "args": [
+                "build",
+                "install_tests_day11"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -319,7 +436,10 @@
             "label": "build tests day12",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day12"],
+            "args": [
+                "build",
+                "install_tests_day12"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -327,7 +447,10 @@
             "label": "build tests day13",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day13"],
+            "args": [
+                "build",
+                "install_tests_day13"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -335,7 +458,10 @@
             "label": "build tests day14",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day14"],
+            "args": [
+                "build",
+                "install_tests_day14"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -343,7 +469,10 @@
             "label": "build tests day15",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day15"],
+            "args": [
+                "build",
+                "install_tests_day15"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -351,7 +480,10 @@
             "label": "build tests day16",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day16"],
+            "args": [
+                "build",
+                "install_tests_day16"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -359,7 +491,10 @@
             "label": "build tests day17",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day17"],
+            "args": [
+                "build",
+                "install_tests_day17"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -367,7 +502,10 @@
             "label": "build tests day18",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day18"],
+            "args": [
+                "build",
+                "install_tests_day18"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -375,7 +513,10 @@
             "label": "build tests day19",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day19"],
+            "args": [
+                "build",
+                "install_tests_day19"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -383,7 +524,10 @@
             "label": "build tests day20",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day20"],
+            "args": [
+                "build",
+                "install_tests_day20"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -391,7 +535,10 @@
             "label": "build tests day21",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day21"],
+            "args": [
+                "build",
+                "install_tests_day21"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -399,7 +546,10 @@
             "label": "build tests day22",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day22"],
+            "args": [
+                "build",
+                "install_tests_day22"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -407,7 +557,10 @@
             "label": "build tests day23",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day23"],
+            "args": [
+                "build",
+                "install_tests_day23"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -415,7 +568,10 @@
             "label": "build tests day24",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day24"],
+            "args": [
+                "build",
+                "install_tests_day24"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -423,7 +579,10 @@
             "label": "build tests day25",
             "type": "shell",
             "command": "zig",
-            "args": ["build", "install_tests_day25"],
+            "args": [
+                "build",
+                "install_tests_day25"
+            ],
             "problemMatcher": [],
             "group": "build",
         },
@@ -431,7 +590,10 @@
             "label": "format",
             "type": "shell",
             "command": "zig",
-            "args": ["fmt", "${file}"],
+            "args": [
+                "fmt",
+                "${file}"
+            ],
             "problemMatcher": [],
         },
     ]
