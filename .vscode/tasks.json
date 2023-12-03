@@ -9,6 +9,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day01",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -20,6 +21,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day02",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -31,6 +33,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day03",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -42,6 +45,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day04",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -53,6 +57,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day05",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -64,6 +69,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day06",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -75,6 +81,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day07",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -86,6 +93,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day08",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -97,6 +105,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day09",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -108,6 +117,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day10",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -119,6 +129,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day11",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -130,6 +141,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day12",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -141,6 +153,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day13",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -152,6 +165,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day14",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -163,6 +177,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day15",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -174,6 +189,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day16",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -185,6 +201,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day17",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -196,6 +213,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day18",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -207,6 +225,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day19",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -218,6 +237,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day20",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -229,6 +249,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day21",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -240,6 +261,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day22",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -251,6 +273,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day23",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -262,6 +285,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day24",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
@@ -273,6 +297,7 @@
             "command": "zig",
             "args": [
                 "build",
+                "install_day25",
                 "-Doptimize=Debug"
             ], // add -Doptimize=ReleaseSafe or -Doptimize=ReleaseFast to optimize
             "problemMatcher": [],
