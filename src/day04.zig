@@ -15,9 +15,17 @@ else
     \\Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
     ;
 
+fn bench(comptime ErrorT: type, name: []const u8, func: *const fn () ErrorT!void) !void {
+    var timer = try std.time.Timer.start();
+    try func();
+    const elapsed = @as(f64, @floatFromInt(timer.read()));
+
+    std.debug.print("Elapsed {s} => {d}ms\n", .{ name, elapsed / 1000.0 / 1000.0 });
+}
+
 pub fn main() !void {
-    try part1();
-    try part2();
+    try bench(error{}, "part1", part1);
+    try bench(error{}, "part2", part2);
 }
 
 fn part1() !void {

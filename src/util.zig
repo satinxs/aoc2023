@@ -26,6 +26,15 @@ pub fn indexOf(line: []const u8, char: u8) ?usize {
     return null;
 }
 
+pub fn reverseIndexOf(line: []const u8, target: u8) ?usize {
+    var i: usize = line.len - 1;
+
+    while (i > 0 and line[i] != target)
+        i -= 1;
+
+    return if (line[i] == target) i else null;
+}
+
 pub fn findNumbers(line: []const u8) NumberIterator {
     return .{ .line = line };
 }
@@ -58,3 +67,16 @@ pub const NumberIterator = struct {
         }
     }
 };
+
+//This is exclusively a compile-time function
+pub fn allLines(data: []const u8) []const []const u8 {
+    var lines: []const []const u8 = &[_][]const u8{};
+
+    var iterator = std.mem.tokenize(u8, data, "\r\n");
+
+    while (iterator.next()) |line| {
+        lines = lines ++ [_][]const u8{line};
+    }
+
+    return lines;
+}
