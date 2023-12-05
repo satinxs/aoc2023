@@ -80,3 +80,13 @@ pub fn allLines(data: []const u8) []const []const u8 {
 
     return lines;
 }
+
+pub fn bench(comptime func: anytype, params: anytype) !void {
+    var timer = try std.time.Timer.start();
+
+    try @call(.auto, func, params);
+
+    const elapsed = @as(f64, @floatFromInt(timer.read())) / 1000.0 / 1000.0;
+
+    std.debug.print("Elapsed: {d}ms\n", .{elapsed});
+}

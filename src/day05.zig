@@ -3,6 +3,7 @@ const std = @import("std");
 const util = @import("util.zig");
 
 const UseTestData = false;
+const UseParallel = true;
 
 const data = if (!UseTestData)
     @embedFile("data/day05.txt")
@@ -42,6 +43,8 @@ else
     \\56 93 4
     ;
 
+const part2_parallelized = @import("day05_parallel_part2.zig").part2_parallelized;
+
 pub fn main() !void {
     @setEvalBranchQuota(25000);
     const lines = comptime util.allLines(data);
@@ -53,7 +56,8 @@ pub fn main() !void {
     const mappings = try readMappings(allocator, lines[1..]);
 
     try part1(lines, mappings);
-    try part2(lines, mappings);
+
+    try util.bench(part2, .{ allocator, lines, mappings });
 }
 
 fn part1(comptime lines: []const []const u8, mappings: []const Mapper) !void {
@@ -73,30 +77,34 @@ fn part1(comptime lines: []const []const u8, mappings: []const Mapper) !void {
     std.debug.print("\n\nNearest location: {d}\n\n", .{nearestLocation});
 }
 
-fn part2(comptime lines: []const []const u8, mappings: []const Mapper) !void {
+fn part2(allocator: std.mem.Allocator, comptime lines: []const []const u8, mappings: []const Mapper) !void {
     const seedRanges = comptime readSeedRanges(lines[0]); //Let's cheat and count seeds in comptime
 
     std.debug.print("Found {d} seed ranges\n", .{seedRanges.len});
 
-    var nearestLocation: usize = std.math.maxInt(usize);
+    if (UseParallel) {
+        try part2_parallelized(allocator, seedRanges, mappings);
+    } else {
+        var nearestLocation: usize = std.math.maxInt(usize);
 
-    for (seedRanges) |seedRange| {
-        const from = seedRange[0];
+        for (seedRanges) |seedRange| {
+            const from = seedRange[0];
 
-        std.debug.print("Calculating for range: {d}/{d}\n", .{ seedRange[0], seedRange[1] });
+            std.debug.print("Calculating for range: {d}/{d}\n", .{ seedRange[0], seedRange[1] });
 
-        var i: usize = 0;
-        while (i < seedRange[1]) : (i += 1) {
-            const seed = from + i;
+            var i: usize = 0;
+            while (i < seedRange[1]) : (i += 1) {
+                const seed = from + i;
 
-            const location = mapSeedToLocation(mappings, seed);
+                const location = mapSeedToLocation(mappings, seed);
 
-            if (location < nearestLocation)
-                nearestLocation = location;
+                if (location < nearestLocation)
+                    nearestLocation = location;
+            }
         }
-    }
 
-    std.debug.print("\n\nNearest location: {d}\n", .{nearestLocation});
+        std.debug.print("\n\nNearest location: {d}\n", .{nearestLocation});
+    }
 }
 
 fn readMappings(allocator: std.mem.Allocator, lines: []const []const u8) ![]const Mapper {
@@ -134,12 +142,12 @@ fn readMappings(allocator: std.mem.Allocator, lines: []const []const u8) ![]cons
     return try mappers.toOwnedSlice();
 }
 
-const Mapper = struct {
+pub const Mapper = struct {
     name: []const u8,
     ranges: []const Range,
 };
 
-fn mapSeedToLocation(mappers: []const Mapper, seed: usize) usize {
+pub fn mapSeedToLocation(mappers: []const Mapper, seed: usize) usize {
     var value: usize = seed;
 
     for (mappers) |mapper| {
