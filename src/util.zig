@@ -90,3 +90,50 @@ pub fn bench(comptime func: anytype, params: anytype) !void {
 
     std.debug.print("Elapsed: {d}ms\n", .{elapsed});
 }
+
+fn LessFn(comptime T: type) type {
+    return *const fn (a: T, b: T) bool;
+}
+
+pub fn quicksort(comptime T: type, items: []T, comptime lesserThan: LessFn(T)) void {
+    _quicksort(T, items, 0, items.len - 1, lesserThan);
+}
+
+fn _quicksort(comptime T: type, items: []T, i: usize, j: usize, comptime lesserThan: LessFn(T)) void {
+    //Validate partition indices
+    if (!(i < j)) return;
+
+    const partitionIndex = partition(T, items, i, j, lesserThan);
+
+    if (partitionIndex != 0)
+        _quicksort(T, items, i, partitionIndex - 1, lesserThan);
+
+    _quicksort(T, items, partitionIndex + 1, j, lesserThan);
+}
+
+fn swap(comptime T: type, items: []T, a: usize, b: usize) void {
+    const temp = items[a];
+    items[a] = items[b];
+    items[b] = temp;
+}
+
+fn partition(comptime T: type, items: []T, i: usize, j: usize, comptime lessThan: LessFn(T)) usize {
+    //Get the pivot value and initialize the partition boundary.
+    const value = items[i];
+    var boundary: usize = i + 1;
+
+    //Examine all values other than the pivot, swapping to enforce the
+    //invariant. Every swap moves an observed "small" value to the left of the
+    //boundary. "Large" values are left alone since they are already to the
+    //right of the boundary.
+    for (boundary..j + 1) |k| {
+        if (lessThan(items[k], value)) {
+            swap(T, items, k, boundary);
+            boundary += 1;
+        }
+    }
+
+    //Put pivot value between the two sides of the partition, and return that location.
+    swap(T, items, i, boundary - 1);
+    return boundary - 1;
+}
