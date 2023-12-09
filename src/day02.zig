@@ -1,24 +1,16 @@
 const std = @import("std");
+const util = @import("util.zig");
+
 const isDigit = std.ascii.isDigit;
 const isLetter = std.ascii.isAlphabetic;
 
 const data = @embedFile("data/day02.txt");
 
-// const data =
-//     \\Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-//     \\Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-//     \\Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-//     \\Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-//     \\Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
-//     \\
-// ;
-
 pub fn main() !void {
-    try part1();
-    try part2();
+    try util.benchDay("02", part1, part2);
 }
 
-fn part1() !void {
+fn part1() !usize {
     var sum: usize = 0;
 
     var lines = std.mem.tokenize(u8, data, "\r\n");
@@ -32,10 +24,10 @@ fn part1() !void {
             sum += game.gameId;
     }
 
-    std.debug.print("Total: {d}\n", .{sum});
+    return sum;
 }
 
-fn part2() !void {
+fn part2() !usize {
     var sum: usize = 0;
 
     var lines = std.mem.tokenize(u8, data, "\r\n");
@@ -50,7 +42,7 @@ fn part2() !void {
         sum += power;
     }
 
-    std.debug.print("Total: {d}\n", .{sum});
+    return sum;
 }
 
 const TokenType = enum { Identifier, Number, Comma, Colon, Semicolon };
@@ -233,3 +225,10 @@ const GameInfo = struct {
         return self.red <= 12 and self.green <= 13 and self.blue <= 14;
     }
 };
+
+test "Day 02 pt 1" {
+    try std.testing.expect(try part1() == 2476);
+}
+test "Day 02 pt 2" {
+    try std.testing.expect(try part2() == 54911);
+}

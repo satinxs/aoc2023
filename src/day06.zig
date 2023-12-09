@@ -1,21 +1,13 @@
 const std = @import("std");
-
 const util = @import("util.zig");
 
-const UseTestData = false;
-
-const data = if (UseTestData)
-    \\Time:      7  15   30
-    \\Distance:  9  40  200
-else
-    @embedFile("data/day06.txt");
+const data = @embedFile("data/day06.txt");
 
 pub fn main() !void {
-    try part1();
-    try part2();
+    try util.benchDay("06", part1, part2);
 }
 
-fn part1() !void {
+fn part1() !usize {
     const lines = comptime util.allLines(data);
 
     var iterator = PairIterator{
@@ -38,10 +30,10 @@ fn part1() !void {
         totalWins *= count;
     }
 
-    std.debug.print("Total ways to win: {d}\n", .{totalWins});
+    return totalWins;
 }
 
-fn part2() !void {
+fn part2() !usize {
     const lines = comptime util.allLines(data);
 
     const time = parseAllDigits(lines[0]);
@@ -56,7 +48,7 @@ fn part2() !void {
             count += 1;
     }
 
-    std.debug.print("Total ways to win: {d}\n", .{count});
+    return count;
 }
 
 fn parseAllDigits(line: []const u8) usize {
@@ -89,3 +81,10 @@ const PairIterator = struct {
         return null;
     }
 };
+
+test "Day 06 pt 1" {
+    try std.testing.expect(try part1() == 275724);
+}
+test "Day 06 pt 2" {
+    try std.testing.expect(try part2() == 37286485);
+}

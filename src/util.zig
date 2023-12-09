@@ -91,6 +91,20 @@ pub fn bench(comptime func: anytype, params: anytype) !void {
     std.debug.print("Elapsed: {d}ms\n", .{elapsed});
 }
 
+pub fn benchDay(id: []const u8, part1: anytype, part2: anytype) !void {
+    std.debug.print("Running Day {s}\n", .{id});
+
+    var timer = try std.time.Timer.start();
+    const r1 = try @call(.auto, part1, .{});
+    const e1 = @as(f64, @floatFromInt(timer.read())) / 1000.0 / 1000.0;
+    std.debug.print("Day {s}, pt1 = {d} in {d}ms\n", .{ id, r1, e1 });
+
+    timer.reset();
+    const r2 = try @call(.auto, part2, .{});
+    const e2 = @as(f64, @floatFromInt(timer.read())) / 1000.0 / 1000.0;
+    std.debug.print("Day {s}, pt1 = {d} in {d}ms\n", .{ id, r2, e2 });
+}
+
 fn LessFn(comptime T: type) type {
     return *const fn (a: T, b: T) bool;
 }

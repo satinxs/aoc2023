@@ -2,50 +2,17 @@ const std = @import("std");
 
 const util = @import("util.zig");
 
-const UseTestData = false;
 const UseParallel = true;
 
-const data = if (!UseTestData)
-    @embedFile("data/day05.txt")
-else
-    \\seeds: 79 14 55 13
-    \\
-    \\seed-to-soil map:
-    \\50 98 2
-    \\52 50 48
-    \\
-    \\soil-to-fertilizer map:
-    \\0 15 37
-    \\37 52 2
-    \\39 0 15
-    \\
-    \\fertilizer-to-water map:
-    \\49 53 8
-    \\0 11 42
-    \\42 0 7
-    \\57 7 4
-    \\
-    \\water-to-light map:
-    \\88 18 7
-    \\18 25 70
-    \\
-    \\light-to-temperature map:
-    \\45 77 23
-    \\81 45 19
-    \\68 64 13
-    \\
-    \\temperature-to-humidity map:
-    \\0 69 1
-    \\1 0 69
-    \\
-    \\humidity-to-location map:
-    \\60 56 37
-    \\56 93 4
-    ;
+const data = @embedFile("data/day05.txt");
 
 const part2_parallelized = @import("day05_parallel_part2.zig").part2_parallelized;
 
 pub fn main() !void {
+    try util.benchDay("05", part1, part2);
+}
+
+fn part1() !usize {
     @setEvalBranchQuota(25000);
     const lines = comptime util.allLines(data);
 
@@ -54,16 +21,14 @@ pub fn main() !void {
     const allocator = gpa.allocator();
 
     const mappings = try readMappings(allocator, lines[1..]);
+    defer {
+        for (mappings) |m|
+            allocator.free(m.ranges);
 
-    try part1(lines, mappings);
+        allocator.free(mappings);
+    }
 
-    try util.bench(part2, .{ allocator, lines, mappings });
-}
-
-fn part1(comptime lines: []const []const u8, mappings: []const Mapper) !void {
     const seeds = comptime readSeeds(lines[0]); //Let's cheat and count seeds in comptime
-
-    std.debug.print("{any}\n", .{seeds});
 
     var nearestLocation: usize = std.math.maxInt(usize);
 
@@ -74,23 +39,34 @@ fn part1(comptime lines: []const []const u8, mappings: []const Mapper) !void {
             nearestLocation = location;
     }
 
-    std.debug.print("\n\nNearest location: {d}\n\n", .{nearestLocation});
+    return nearestLocation;
 }
 
-fn part2(allocator: std.mem.Allocator, comptime lines: []const []const u8, mappings: []const Mapper) !void {
+fn part2() !usize {
+    @setEvalBranchQuota(25000);
+    const lines = comptime util.allLines(data);
+
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+    const allocator = gpa.allocator();
+
+    const mappings = try readMappings(allocator, lines[1..]);
+    defer {
+        for (mappings) |m|
+            allocator.free(m.ranges);
+
+        allocator.free(mappings);
+    }
+
     const seedRanges = comptime readSeedRanges(lines[0]); //Let's cheat and count seeds in comptime
 
-    std.debug.print("Found {d} seed ranges\n", .{seedRanges.len});
-
     if (UseParallel) {
-        try part2_parallelized(allocator, seedRanges, mappings);
+        return try part2_parallelized(allocator, seedRanges, mappings);
     } else {
         var nearestLocation: usize = std.math.maxInt(usize);
 
         for (seedRanges) |seedRange| {
             const from = seedRange[0];
-
-            std.debug.print("Calculating for range: {d}/{d}\n", .{ seedRange[0], seedRange[1] });
 
             var i: usize = 0;
             while (i < seedRange[1]) : (i += 1) {
@@ -103,7 +79,7 @@ fn part2(allocator: std.mem.Allocator, comptime lines: []const []const u8, mappi
             }
         }
 
-        std.debug.print("\n\nNearest location: {d}\n", .{nearestLocation});
+        return nearestLocation;
     }
 }
 
@@ -151,9 +127,6 @@ pub fn mapSeedToLocation(mappers: []const Mapper, seed: usize) usize {
     var value: usize = seed;
 
     for (mappers) |mapper| {
-        if (UseTestData)
-            std.debug.print("\nMapping: {s}", .{mapper.name});
-
         for (mapper.ranges) |range| {
             const mapped = range.map(value);
             if (value != mapped) {
@@ -161,9 +134,6 @@ pub fn mapSeedToLocation(mappers: []const Mapper, seed: usize) usize {
                 break;
             }
         }
-
-        if (UseTestData)
-            std.debug.print(" => {d}", .{value});
     }
 
     return value;
@@ -220,4 +190,11 @@ fn readSeedRanges(line: []const u8) []const [2]usize {
     }
 
     return result;
+}
+
+test "Day 05 pt 1" {
+    try std.testing.expect(try part1() == 389056265);
+}
+test "Day 05 pt 2" {
+    try std.testing.expect(try part2() == 137516820);
 }

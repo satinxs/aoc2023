@@ -25,6 +25,7 @@ pub fn build(b: *Build) void {
 
     const install_all = b.step("install_all", "Install all days");
     const run_all = b.step("run_all", "Run all days");
+    const test_all = b.step("test_all", "Run test on all days");
 
     const generate = b.step("generate", "Generate stub files from template/template.zig");
     const build_generate = b.addExecutable(.{
@@ -86,6 +87,7 @@ pub fn build(b: *Build) void {
         const run_step = b.step(dayString, run_desc);
         run_step.dependOn(&run_cmd.step);
         run_all.dependOn(&run_cmd.step);
+        test_all.dependOn(&run_test.step);
     }
 
     // Set up tests for util.zig

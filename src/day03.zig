@@ -6,28 +6,13 @@ const NumberIterator = util.NumberIterator;
 const Number = util.Number;
 const findNumbers = util.findNumbers;
 
-const UseTestData = false;
-
-const data = if (UseTestData)
-    \\467..114..
-    \\...*......
-    \\..35..633.
-    \\......#...
-    \\617*......
-    \\.....+.58.
-    \\..592.....
-    \\......755.
-    \\...$.*....
-    \\.664.598..
-else
-    @embedFile("data/day03.txt");
+const data = @embedFile("data/day03.txt");
 
 pub fn main() !void {
-    try part1();
-    try part2();
+    try util.benchDay("03", part1, part2);
 }
 
-fn part1() !void {
+fn part1() !usize {
     var lines = std.mem.tokenize(u8, data, "\r\n");
 
     var lineHistory = [_]?[]const u8{ null, null, lines.next() };
@@ -53,10 +38,10 @@ fn part1() !void {
         sum += sumParts(lineHistory, &numbers);
     }
 
-    std.debug.print("Total: {d}\n", .{sum});
+    return sum;
 }
 
-fn part2() !void {
+fn part2() !usize {
     var lines = std.mem.tokenize(u8, data, "\r\n");
     var lineHistory = [_]?[]const u8{ null, null, lines.next() };
 
@@ -78,7 +63,7 @@ fn part2() !void {
             sum += getGearRatio(lineHistory, starIndex);
     }
 
-    std.debug.print("Total: {d}\n", .{sum});
+    return sum;
 }
 
 fn getGearRatio(lines: [3]?[]const u8, index: usize) usize {
@@ -139,4 +124,11 @@ fn hasAdjacentSymbol(line: []const u8, pos: usize, length: usize) bool {
     }
 
     return false;
+}
+
+test "Day 03 pt 1" {
+    try std.testing.expect(try part1() == 527446);
+}
+test "Day 03 pt 2" {
+    try std.testing.expect(try part2() == 73201705);
 }

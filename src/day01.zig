@@ -1,14 +1,13 @@
 const std = @import("std");
-const Allocator = std.mem.Allocator;
+const util = @import("util.zig");
 
 const data = @embedFile("data/day01.txt");
 
 pub fn main() !void {
-    try part1();
-    try part2();
+    try util.benchDay("01", part1, part2);
 }
 
-fn part1() !void {
+fn part1() !usize {
     var sum: u64 = 0;
     var tokenizer = std.mem.tokenize(u8, data, "\n");
     while (tokenizer.next()) |line| {
@@ -26,10 +25,10 @@ fn part1() !void {
         sum += first.? * 10 + last.?;
     }
 
-    std.debug.print("Total sum: {d}\n", .{sum});
+    return sum;
 }
 
-fn part2() !void {
+fn part2() !usize {
     var sum: u64 = 0;
 
     var tokenizer = std.mem.tokenize(u8, data, "\n");
@@ -47,7 +46,7 @@ fn part2() !void {
         sum += first.? * 10 + last.?;
     }
 
-    std.debug.print("Total sum: {d}\n", .{sum});
+    return sum;
 }
 
 const DigitIterator = struct {
@@ -92,3 +91,10 @@ const DigitIterator = struct {
         return null;
     }
 };
+
+test "Day 01 pt 1" {
+    try std.testing.expect(try part1() == 57346);
+}
+test "Day 01 pt 2" {
+    try std.testing.expect(try part2() == 57345);
+}

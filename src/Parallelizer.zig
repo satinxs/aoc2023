@@ -84,6 +84,39 @@ pub const ParallelizeConfiguration = struct {
     workerCount: usize = 0,
 };
 
+const FakeProgress = struct {
+    fn step(_: *FakeProgress) void {}
+    fn deinit(_: *FakeProgress) void {}
+};
+
+const Progress = struct {
+    progress: std.Progress,
+    node: *std.Progress.Node,
+
+    pub fn init(name: []const u8, estimated_total_items: usize, supports_ansi: bool) Progress {
+        var progress = std.Progress{
+            .terminal = std.io.getStdOut(),
+            .supports_ansi_escape_codes = supports_ansi,
+        };
+
+        const node = progress.start(name, estimated_total_items);
+        node.activate();
+
+        return .{
+            .progress = progress,
+            .node = node,
+        };
+    }
+
+    fn step(self: *Progress) void {
+        self.node.completeOne();
+    }
+
+    fn deinit(self: *Progress) void {
+        self.node.end();
+    }
+};
+
 pub fn Parallelize(comptime Ctx: type, comptime In: type, comptime Out: type, comptime func: *const fn (Ctx, In) Out, comptime config: ParallelizeConfiguration) type {
     return struct {
         pub fn run(allocator: std.mem.Allocator, ctx: Ctx, input: []const In) ![]Out {
@@ -110,20 +143,18 @@ pub fn Parallelize(comptime Ctx: type, comptime In: type, comptime Out: type, co
             for (0..cpuCount) |i|
                 workers[i] = try std.Thread.spawn(.{}, worker, .{ ctx, inputChannel, outputChannel });
 
-            var progress = std.Progress{
-                .terminal = std.io.getStdOut(),
-                .supports_ansi_escape_codes = true,
-            };
+            var progress = if (config.showProgress)
+                Progress.init("Parallel work", input.len, false)
+            else
+                FakeProgress{};
 
-            var node = progress.start("Parallel work", input.len);
-            defer node.end();
-            node.activate();
+            defer progress.deinit();
 
             for (0..input.len) |i| {
                 while (true) {
                     if (outputChannel.pop()) |v| {
                         output[i] = v;
-                        node.completeOne();
+                        progress.step();
                         break;
                     } else {
                         std.time.sleep(std.time.ns_per_ms);

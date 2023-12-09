@@ -2,33 +2,13 @@ const std = @import("std");
 
 const util = @import("util.zig");
 
-const UseTestData = false;
-
-const data = if (!UseTestData)
-    @embedFile("data/day04.txt")
-else
-    \\Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
-    \\Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
-    \\Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
-    \\Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83
-    \\Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
-    \\Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
-    ;
-
-fn bench(comptime ErrorT: type, name: []const u8, func: *const fn () ErrorT!void) !void {
-    var timer = try std.time.Timer.start();
-    try func();
-    const elapsed = @as(f64, @floatFromInt(timer.read()));
-
-    std.debug.print("Elapsed {s} => {d}ms\n", .{ name, elapsed / 1000.0 / 1000.0 });
-}
+const data = @embedFile("data/day04.txt");
 
 pub fn main() !void {
-    try bench(error{}, "part1", part1);
-    try bench(error{}, "part2", part2);
+    try util.benchDay("04", part1, part2);
 }
 
-fn part1() !void {
+fn part1() !usize {
     var lines = std.mem.tokenize(u8, data, "\r\n");
 
     var sum: usize = 0;
@@ -36,10 +16,10 @@ fn part1() !void {
     while (lines.next()) |line|
         sum += getCardPoints(line, true);
 
-    std.debug.print("The total sum is: {d}\n", .{sum});
+    return sum;
 }
 
-fn part2() !void {
+fn part2() !usize {
     @setEvalBranchQuota(25000);
     const lineCount = comptime std.mem.count(u8, data, "\n") + 1;
 
@@ -63,7 +43,7 @@ fn part2() !void {
         lineIndex += 1;
     }
 
-    std.debug.print("Total cards: {d}\n", .{totalCards});
+    return totalCards;
 }
 
 fn getCardPoints(line: []const u8, pow: bool) usize {
@@ -100,4 +80,11 @@ fn hasN(line: []const u8, n: usize) bool {
             return true;
 
     return false;
+}
+
+test "Day 04 pt 1" {
+    try std.testing.expect(try part1() == 21138);
+}
+test "Day 04 pt 2" {
+    try std.testing.expect(try part2() == 7185540);
 }

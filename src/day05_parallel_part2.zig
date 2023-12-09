@@ -27,10 +27,10 @@ fn batchify(allocator: std.mem.Allocator, seedRanges: []const [2]usize) ![][2]us
     return try ranges.toOwnedSlice();
 }
 
-pub fn part2_parallelized(allocator: Allocator, seedRanges: []const [2]usize, mappings: []const Mapper) !void {
+pub fn part2_parallelized(allocator: Allocator, seedRanges: []const [2]usize, mappings: []const Mapper) !usize {
     const ranges = try batchify(allocator, seedRanges);
 
-    const output = try Parallelize([]const Mapper, [2]usize, usize, mappingFunction, .{ .showProgress = true })
+    const output = try Parallelize([]const Mapper, [2]usize, usize, mappingFunction, .{ .showProgress = false })
         .run(allocator, mappings, ranges);
     defer allocator.free(output);
 
@@ -38,7 +38,7 @@ pub fn part2_parallelized(allocator: Allocator, seedRanges: []const [2]usize, ma
     for (output) |n|
         nearestLocation = @min(nearestLocation, n);
 
-    std.debug.print("\n\nNearest location: {d}\n", .{nearestLocation});
+    return nearestLocation;
 }
 
 fn mappingFunction(mappings: []const Mapper, range: [2]usize) usize {

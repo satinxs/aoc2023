@@ -1,16 +1,48 @@
 const std = @import("std");
 const util = @import("util.zig");
 
-const UseTestData = false;
+const data = @embedFile("data/day07.txt");
 
-const data = if (UseTestData)
-    \\32T3K 765
-    \\T55J5 684
-    \\KK677 28
-    \\KTJJT 220
-    \\QQQJA 483
-else
-    @embedFile("data/day07.txt");
+pub fn main() !void {
+    try util.benchDay("07", part1, part2);
+}
+
+fn part1() !usize {
+    @setEvalBranchQuota(50000);
+    const lines = comptime util.allLines(data);
+
+    var hands = [_]Hand{undefined} ** lines.len;
+
+    for (lines, 0..) |line, i|
+        hands[i] = parseHand(line, true);
+
+    util.quicksort(Hand, &hands, handIsLessThan);
+
+    var winnings: usize = 0;
+    for (hands, 0..) |h, i|
+        winnings += (i + 1) * h.bid;
+
+    return winnings;
+}
+
+fn part2() !usize {
+    @setEvalBranchQuota(50000);
+    const lines = comptime util.allLines(data);
+
+    var hands = [_]Hand{undefined} ** lines.len;
+
+    for (lines, 0..) |line, i|
+        hands[i] = parseHand(line, false);
+
+    util.quicksort(Hand, &hands, handIsLessThan);
+
+    var winnings: usize = 0;
+
+    for (hands, 0..) |h, i|
+        winnings += (i + 1) * h.bid;
+
+    return winnings;
+}
 
 fn getCardValue(card: u8, noJoke: bool) usize {
     const c = std.ascii.toUpper(card);
@@ -157,41 +189,9 @@ fn handIsLessThan(a: Hand, b: Hand) bool {
     return @intFromEnum(a.type) < @intFromEnum(b.type);
 }
 
-pub fn main() !void {
-    @setEvalBranchQuota(50000);
-    const lines = comptime util.allLines(data);
-
-    try util.bench(part1, .{lines});
-    try util.bench(part2, .{lines});
+test "Day 07 pt 1" {
+    try std.testing.expect(try part1() == 254024898);
 }
-
-fn part1(comptime lines: []const []const u8) !void {
-    var hands = [_]Hand{undefined} ** lines.len;
-
-    for (lines, 0..) |line, i|
-        hands[i] = parseHand(line, true);
-
-    util.quicksort(Hand, &hands, handIsLessThan);
-
-    var winnings: usize = 0;
-    for (hands, 0..) |h, i|
-        winnings += (i + 1) * h.bid;
-
-    std.debug.print("Winnings: {d}.\n", .{winnings});
-}
-
-fn part2(comptime lines: []const []const u8) !void {
-    var hands = [_]Hand{undefined} ** lines.len;
-
-    for (lines, 0..) |line, i|
-        hands[i] = parseHand(line, false);
-
-    util.quicksort(Hand, &hands, handIsLessThan);
-
-    var winnings: usize = 0;
-
-    for (hands, 0..) |h, i|
-        winnings += (i + 1) * h.bid;
-
-    std.debug.print("Winnings: {d}.\n", .{winnings});
+test "Day 07 pt 2" {
+    try std.testing.expect(try part2() == 254115617);
 }
